@@ -7,7 +7,7 @@ using Backend.Models;
 
 namespace XMLProcesser.Interfaces
 {
-    interface IXMLModule
+    public interface IXMLModule
     {
         List<Country> GetAllCountries();
         void AddNewCountry(Country model);
