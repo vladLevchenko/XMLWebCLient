@@ -11,5 +11,7 @@ namespace XMLProcesser.Interfaces
     {
         List<Country> GetAllCountries();
         void AddNewCountry(Country model);
+
+        void SaveChanges();
     }
 }

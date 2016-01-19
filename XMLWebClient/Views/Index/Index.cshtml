@@ -1,10 +1,40 @@
-﻿
+﻿@using XMLWebClient.Models
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
-<br/>
-Fuck you fuck you fuck you
+<br />
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    @for (var i = 0;i<Model.Countries.Count;i++)
+    {
+        var item = Model.Countries[i]; 
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading_@i">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_@i" aria-expanded="true" aria-controls="collapse_@i">
+                        @item.Name
+                    </a>
+                </h4>
+            </div>
+            <div id="collapse_@i" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_@i">
+                <div class="panel-body">
+                    <div>Capital:@item.Capital</div>
+                    <div>Population:@item.Population</div>
+                </div>
+            </div>
+        </div>
 
+    }
+
+</div>
+<br />
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAddForm" aria-expanded="false" aria-controls="collapseAddForm">
+    Add new country
+</button>
+<div class="collapse" id="collapseAddForm">
+    <div class="well">
+       @Html.Partial("~/Views/Index/NewCountryFormView.cshtml", new CountryViewModel())
+    </div>
+</div>

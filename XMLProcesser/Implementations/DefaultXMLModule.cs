@@ -14,20 +14,20 @@ namespace XMLProcesser.Implementations
         private XDocument _document;
         private string _location;
 
-        public DefaultXMLModule(string filename, string directory = null)
+       
+        public DefaultXMLModule(string filename)
         {
-            //if no location is set, use current application directory
-            if (directory == null)
-            {
-                directory = Directory.GetCurrentDirectory();
-            }
-            var _location = directory + filename;
+            //use current application directory
+            
+            var directory = Directory.GetCurrentDirectory();
+            
+            _location = directory + filename;
 
             //check if specified file exists, if no - create new
             if (File.Exists(_location))
                 _document = XDocument.Load(_location);
             else
-                _document = new XDocument();
+                _document = new XDocument(new XElement("countryList"));
         }
 
         public List<Backend.Models.Country> GetAllCountries()
@@ -41,7 +41,7 @@ namespace XMLProcesser.Implementations
             {
                 res.Add(new Backend.Models.Country
                 {
-                    Id = Convert.ToInt32(node.Element("id").Value),
+                    Id = new Guid(node.Element("id").Value),
                     Name = node.Element("name").Value,
                     Capital = node.Element("capital").Value,
                     Population = Convert.ToInt32(node.Element("population").Value)
@@ -68,6 +68,7 @@ namespace XMLProcesser.Implementations
             _document.Save(_location);
         }
 
-        
+        public string XMLFileName { get; set; }
+
     }
 }
