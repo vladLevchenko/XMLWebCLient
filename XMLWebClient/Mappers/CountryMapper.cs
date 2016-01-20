@@ -8,7 +8,7 @@ using XMLWebClient.Models;
 namespace XMLWebClient.Mappers
 {
     public static class CountryMapper
-    {
+    {        
         public static CountryViewModel ToViewModel(Country domainModel)
         {
             return new CountryViewModel

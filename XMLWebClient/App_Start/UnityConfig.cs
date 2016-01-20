@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity.Configuration;
 using XMLProcesser.Interfaces;
 using XMLProcesser.Implementations;
 using System.Web.Configuration;
+using System.Web;
 
 namespace XMLWebClient.App_Start
 {
@@ -35,7 +36,13 @@ namespace XMLWebClient.App_Start
         /// change the defaults), as Unity allows resolving a concrete type even if it was not previously registered.</remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            container.RegisterType<IXMLModule, DefaultXMLModule>(new InjectionConstructor(WebConfigurationManager.AppSettings["XMLFileName"]));
+            //filename is specified in global web.config, for directory we use current solution directory
+            container.RegisterType<IXMLModule, DefaultXMLModule>(
+                new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(                    
+                    WebConfigurationManager.AppSettings["XMLFileName"],
+                    HttpRuntime.AppDomainAppPath)
+                    );
         }
     }
 }

@@ -1,10 +1,14 @@
 ﻿@using XMLWebClient.Models
+@using System.Web
+@using System.Web.Configuration
+
 @{
     ViewBag.Title = "Index";
+    ViewBag.FilePath = HttpRuntime.AppDomainAppPath + WebConfigurationManager.AppSettings["XMLFileName"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Countries</h2>
 <br />
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     @for (var i = 0;i<Model.Countries.Count;i++)

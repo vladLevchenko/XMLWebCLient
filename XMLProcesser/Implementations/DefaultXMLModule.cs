@@ -15,13 +15,12 @@ namespace XMLProcesser.Implementations
         private string _location;
 
        
-        public DefaultXMLModule(string filename)
+        public DefaultXMLModule(string filename, string location)
         {
-            //use current application directory
+            //use current web host directory by default
+            location = location ?? Directory.GetCurrentDirectory();
             
-            var directory = Directory.GetCurrentDirectory();
-            
-            _location = directory + filename;
+            _location = location + filename;
 
             //check if specified file exists, if no - create new
             if (File.Exists(_location))

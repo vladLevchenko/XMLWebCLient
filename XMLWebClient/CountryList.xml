@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<countryList>
+  <country>
+    <id>2591eedc-ef00-4145-ae97-11246d2c5123</id>
+    <name>Nilfgaard</name>
+    <capital>Golden City</capital>
+    <population>90000</population>
+  </country>
+  <country>
+    <id>e5b926e8-23e3-404d-b945-99b7f5dd74a4</id>
+    <name>Kovir</name>
+    <capital>Pont Vanis</capital>
+    <population>7000</population>
+  </country>
+  <country>
+    <id>37751ff8-eba1-451b-b8d2-6f8d973476a5</id>
+    <name>Temeria</name>
+    <capital>Wyzima</capital>
+    <population>4000</population>
+  </country>
+  <country>
+    <id>486b2197-8846-40ad-aa09-1905bcee92c7</id>
+    <name>Redania</name>
+    <capital>Tretogor</capital>
+    <population>5000</population>
+  </country>
+</countryList>

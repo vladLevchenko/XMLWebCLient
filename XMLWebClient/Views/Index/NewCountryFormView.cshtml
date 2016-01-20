@@ -1,18 +1,21 @@
 ﻿@using XMLWebClient.Models
 @model CountryViewModel
 @using (Html.BeginForm("AddNew", "Index", FormMethod.Post))
-{
+{   
     <div class="form-group">
         <label for="Name">Name</label>
         @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, null, new { @class = "text-danger" })
     </div>
     <div class="form-group">
         <label for="Capital">Capital</label>
         @Html.TextBoxFor(model => model.Capital, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Capital, null, new { @class = "text-danger" })
     </div>
     <div class="form-group">
         <label for="Name">Population</label>
         @Html.TextBoxFor(model => model.Population, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Population, null, new { @class = "text-danger" })
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default">Save</button>
 }

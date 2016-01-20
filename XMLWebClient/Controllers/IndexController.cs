@@ -9,8 +9,7 @@ namespace XMLWebClient.Controllers
 {
     public class IndexController : Controller
     {
-        private IXMLModule _xmlService;
-        private CountryListViewModel _model;        
+        private IXMLModule _xmlService;         
         // GET: Index
 
         public IndexController(IXMLModule xmlService)
@@ -19,23 +18,25 @@ namespace XMLWebClient.Controllers
             
         }
         public ActionResult Index()
-        {
-                       
-            _model = new CountryListViewModel
+        {                       
+            var model = new CountryListViewModel
             {
                 Countries = _xmlService
                     .GetAllCountries()
                     .Select(c => CountryMapper.ToViewModel(c))
                     .ToList()
             };
-            return View(_model);
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult AddNew(CountryViewModel newCountry)
         {
-            _xmlService.AddNewCountry(CountryMapper.ToDomainModel(newCountry));
-            _xmlService.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _xmlService.AddNewCountry(CountryMapper.ToDomainModel(newCountry));
+                _xmlService.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
     }
